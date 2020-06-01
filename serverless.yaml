@@ -1,0 +1,22 @@
+service: cx-devx-learn-ms
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+  - serverless-plugin-optimize
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev                             # stage
+  region: ap-southeast-1                 # replace your aws region
+  memorySize: 256                        # memory size
+
+functions:
+  main:
+      # The module 'handler' is exported in the file 'src/lambda'
+    handler: src/lambda.handler
+    events:
+      - http:
+          method: any
+          path: /{any+}
