@@ -3,7 +3,6 @@ service: cx-devx-learn-ms
 plugins:
   - serverless-offline
   - serverless-plugin-typescript
-  - serverless-plugin-optimize
 
 provider:
   name: aws

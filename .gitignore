@@ -2,6 +2,9 @@
 /dist
 /node_modules
 /.build
+/.serverless
+/.aws
+/devx-learn
 
 # Logs
 logs

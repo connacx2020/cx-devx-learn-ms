@@ -5,7 +5,7 @@ export class CourseInput {
     @Field(type => ID)
     authorID: string;
     @Field(type => String)
-    name: string;
+    title: string;
     @Field(type => String)
     rating: string;
     @Field(type => String)
@@ -21,11 +21,15 @@ export class CourseType {
     @Field(type => ID)
     authorID: string;
     @Field(type => String)
-    name: string;
+    title: string;
     @Field(type => String)
     rating: string;
     @Field(type => String)
     photoUrl: string;
     @Field(type => [String])
     courseContent: [string];
+    @Field(type => Number)
+    likes: number;
+    @Field(type => Number)
+    enrolled: number;
 }
