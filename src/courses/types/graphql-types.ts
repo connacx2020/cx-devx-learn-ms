@@ -1,4 +1,4 @@
-import { InputType, Field, ObjectType, ID, Int } from '@nestjs/graphql';
+import { InputType, Field, ObjectType, ID, Int, Float } from '@nestjs/graphql';
 
 @InputType()
 export class CourseInput {
@@ -6,12 +6,18 @@ export class CourseInput {
     authorID: string;
     @Field(type => String)
     title: string;
-    @Field(type => String)
-    rating: string;
+    @Field(type => Float)
+    rating: number;
     @Field(type => String)
     photoUrl: string;
     @Field(type => [String])
     courseContent: [string];
+    @Field(type => String)
+    description: string;
+    @Field(type => [String])
+    outcome: [string];
+    @Field(type => [String])
+    preRequested: [string];
 }
 
 @ObjectType()
@@ -22,14 +28,18 @@ export class CourseType {
     authorID: string;
     @Field(type => String)
     title: string;
-    @Field(type => String)
-    rating: string;
+    @Field(type => Float)
+    rating: number;
     @Field(type => String)
     photoUrl: string;
     @Field(type => [String])
     courseContent: [string];
     @Field(type => Number)
-    likes: number;
-    @Field(type => Number)
     enrolled: number;
+    @Field(type => String)
+    description: string;
+    @Field(type => [String])
+    outcome: [string];
+    @Field(type => [String])
+    preRequested: [string];
 }

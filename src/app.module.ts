@@ -8,7 +8,7 @@ import { CourseModule } from './courses/course.module';
 @Module({
   imports: [
       GraphQLModule.forRoot({
-          autoSchemaFile: '/tmp/schema.gql',
+          autoSchemaFile: '/tmp/schema.gql'
       }),
       MongooseModule.forRoot('mongodb://52.221.93.157/cx-learn'),
       CourseModule

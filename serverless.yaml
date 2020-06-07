@@ -17,5 +17,10 @@ functions:
     handler: src/lambda.handler
     events:
       - http:
-          method: any
-          path: /{any+}
+          method: GET
+          cors: true
+          path: graphql
+      - http:
+          method: POST
+          cors: true
+          path: graphql
