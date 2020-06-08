@@ -1,0 +1,26 @@
+service: cx-devx-learn-ms
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev                             # stage
+  region: ap-southeast-1                 # replace your aws region
+  memorySize: 256                        # memory size
+
+functions:
+  main:
+      # The module 'handler' is exported in the file 'src/lambda'
+    handler: src/lambda.handler
+    events:
+      - http:
+          method: GET
+          cors: true
+          path: graphql
+      - http:
+          method: POST
+          cors: true
+          path: graphql
