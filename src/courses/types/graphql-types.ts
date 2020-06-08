@@ -6,8 +6,6 @@ export class CourseInput {
     authorID: string;
     @Field(type => String)
     title: string;
-    @Field(type => Float)
-    rating: number;
     @Field(type => String)
     photoUrl: string;
     @Field(type => [String])
