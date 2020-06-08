@@ -4,13 +4,15 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppResolver } from './app.resolver';
 import { CourseModule } from './courses/course.module';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 @Module({
   imports: [
       GraphQLModule.forRoot({
           autoSchemaFile: '/tmp/schema.gql'
       }),
-      MongooseModule.forRoot('mongodb://52.221.93.157/cx-learn'),
+      MongooseModule.forRoot(`mongodb://${process.env.DATABASE_HOST}/${process.env.DATABASE_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }),
       CourseModule
   ],
   providers: [AppService, AppResolver],

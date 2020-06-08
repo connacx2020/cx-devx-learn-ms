@@ -15,17 +15,17 @@ export class CourseResolver {
     }
 
     @Query(returns => CourseType, {nullable: true} )
-    async getCourseById(@Args('CourseId', { type: () => ID }) courseID: string) {
+    async getCourseById(@Args('courseId', { type: () => ID }) courseID: string) {
         return await this.courseService.findCourseById(courseID);
     }
 
     @Query(returns => [CourseType])
-    async findCourseWithTitle(@Args('CourseTitle') courseTitle: string) {
+    async findCourseWithTitle(@Args('courseTitle') courseTitle: string) {
         return await this.courseService.findCourseByTitle(courseTitle);
     }
 
     @Mutation(returns => Boolean)
-    async createNewCourse(@Args('CourseData') newCourseData: CourseInput) {
+    async createNewCourse(@Args('courseData') newCourseData: CourseInput) {
         try{
             newCourseData['id'] = generateUUID();
             newCourseData['enrolled'] = 0;

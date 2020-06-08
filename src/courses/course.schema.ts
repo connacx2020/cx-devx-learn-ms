@@ -7,7 +7,6 @@ export const CourseSchema = new mongoose.Schema({
     rating: Number,
     photoUrl: String,
     courseContent: [String],
-    likes: Number,
     enrolled: Number,
     description: String,
     duration: String,
