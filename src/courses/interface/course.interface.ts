@@ -6,7 +6,7 @@ export interface Course extends Document {
     title: String,
     rating: number,
     photoUrl: String,
-    seriesId: String,
+    courseContent: [string],
     enrolled: number,
     description: String,
     duration: String,

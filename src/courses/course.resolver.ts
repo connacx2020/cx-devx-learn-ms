@@ -19,11 +19,6 @@ export class CourseResolver {
         return await this.courseService.findCourseById(courseID);
     }
 
-    @Query(returns => [CourseType], {nullable: true} )
-    async getCoursesByAuthorId(@Args('authorId', { type: () => ID }) authorID: string) {
-        return await this.courseService.findCoursesByInstructorId(authorID);
-    }
-
     @Query(returns => [CourseType])
     async findCourseWithTitle(@Args('courseTitle') courseTitle: string) {
         return await this.courseService.findCourseByTitle(courseTitle);
