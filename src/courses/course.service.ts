@@ -18,6 +18,10 @@ export class CourseService {
         return await this.courseModel.findOne({ id: id }).exec();
     }
 
+    async findCoursesByInstructorId(id: string) {
+        return await this.courseModel.find({ authorID: id }).exec();
+    }
+
     async findCourseByTitle(title: string) {
         const results = await this.courseModel.find({ $text: { $search: title } });
         return results;

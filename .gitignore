@@ -4,7 +4,7 @@
 /.build
 /.serverless
 /.aws
-/devx-learn
+/devx-learn-ms
 
 # Logs
 logs
