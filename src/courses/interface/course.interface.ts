@@ -7,10 +7,9 @@ export interface Course extends Document {
     rating: number,
     photoUrl: String,
     courseContent: [string],
-    likes: number,
     enrolled: number,
     description: String,
     duration: String,
     outcome: [string],
-    preRequest: [string]
+    preRequested: [string]
 };
