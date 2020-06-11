@@ -29,6 +29,11 @@ export class CourseResolver {
         return await this.courseService.findCourseByTitle(courseTitle);
     }
 
+    @Query(returns => [CourseType], {nullable: true} )
+    async getCoursesByAuthorId(@Args('authorId', { type: () => ID }) authorID: string) {
+        return await this.courseService.findCoursesByInstructorId(authorID);
+    }
+
     @Mutation(returns => Boolean)
     async createNewCourse(@Args('courseData') newCourseData: CourseInput) {
         try{

@@ -27,6 +27,10 @@ export class CourseService {
         return results;
     }
 
+    async findCoursesByInstructorId(id: string) {
+        return await this.courseModel.find({ authorID: id }).exec();
+    }
+
     async addNewCourse(newCourse: CourseInput) {
         const createdNewCourse = new this.courseModel(newCourse);
         try {

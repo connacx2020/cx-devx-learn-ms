@@ -15,7 +15,7 @@ export class CourseInput {
     @Field(type => [String])
     outcome: [string];
     @Field(type => [String])
-    preRequested: [string];
+    prerequisite: [string];
     @Field(type => String)
     duration: string;
 }
@@ -41,7 +41,7 @@ export class CourseType {
     @Field(type => [String])
     outcome: [string];
     @Field(type => [String])
-    preRequested: [string];
+    prerequisite: [string];
     @Field(type => String)
     duration: string;
 }
