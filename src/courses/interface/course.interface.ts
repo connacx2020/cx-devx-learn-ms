@@ -11,5 +11,5 @@ export interface Course extends Document {
     description: String,
     duration: String,
     outcome: [string],
-    preRequested: [string]
+    prerequisite: [string]
 };
