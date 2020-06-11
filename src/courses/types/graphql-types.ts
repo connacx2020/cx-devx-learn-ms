@@ -8,14 +8,14 @@ export class CourseInput {
     title: string;
     @Field(type => String)
     photoUrl: string;
-    @Field(type => [String])
-    courseContent: [string];
+    @Field(type => String)
+    seriesId: string;
     @Field(type => String)
     description: string;
     @Field(type => [String])
     outcome: [string];
     @Field(type => [String])
-    preRequested: [string];
+    prerequisite: [string];
     @Field(type => String)
     duration: string;
 }
@@ -32,8 +32,8 @@ export class CourseType {
     rating: number;
     @Field(type => String)
     photoUrl: string;
-    @Field(type => [String])
-    courseContent: [string];
+    @Field(type => String)
+    seriesId: string;
     @Field(type => Number)
     enrolled: number;
     @Field(type => String)
@@ -41,7 +41,7 @@ export class CourseType {
     @Field(type => [String])
     outcome: [string];
     @Field(type => [String])
-    preRequested: [string];
+    prerequisite: [string];
     @Field(type => String)
     duration: string
 }
