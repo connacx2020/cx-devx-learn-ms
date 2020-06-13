@@ -11,5 +11,6 @@ export const CourseSchema = new mongoose.Schema({
     description: String,
     duration: String,
     outcome: [String],
-    prerequisite: [String]
+    prerequisite: [String],
+    enrolledUsers: [String]
 });

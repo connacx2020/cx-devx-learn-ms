@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
 import { CourseService } from './course.service';
-import { CourseType, CourseInput } from './types/graphql-types';
+import { CourseType, CourseInput,EnrollInput } from './types/graphql-types';
 import { v4 as generateUUID } from 'uuid';
 
 @Resolver('Course')
@@ -41,5 +41,33 @@ export class CourseResolver {
             return false;
         }
     }
-
+    @Mutation( returns => Boolean)
+    async checkUserIsEnrolled(@Args('enrollData') newEnrollData: EnrollInput){
+        try{
+            return true;
+        }catch(error){
+            return false;
+        }
+    } 
+    @Mutation( returns => Boolean)
+    async enrollCourse(@Args('enrollData') newEnrollData: EnrollInput){
+        try{
+            const isEnroll = await this.courseService.enrollCourse(newEnrollData);
+            if(isEnroll){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(error){
+            return false;
+        }
+    } 
+    @Mutation( returns => Boolean)
+    async unenrollCourse(@Args('enrollData') newEnrollData: EnrollInput){
+        try{
+            return true;
+        }catch(error){
+            return false;
+        }
+    } 
 }

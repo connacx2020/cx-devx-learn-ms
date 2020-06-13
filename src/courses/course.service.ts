@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Course } from './interface/course.interface';
-import { CourseInput } from './types/graphql-types';
+import { CourseInput, EnrollInput } from './types/graphql-types';
 
 @Injectable()
 export class CourseService {
@@ -32,6 +32,39 @@ export class CourseService {
         try {
             await createdNewCourse.save();
             return createdNewCourse;
+        } catch (error) {
+            return error;
+        }
+    }
+    async checkUserIsEnrolled(enrollData: EnrollInput) {
+        const course = await this.courseModel.findOne({ id: enrollData.courseID }, (err, result) => {
+            if(err) console.log(err);
+            const tempEnrollUsers = result.enrolledUsers;
+            const hasUserId = tempEnrollUsers.find(userid => userid === enrollData.userID);
+            if(hasUserId === enrollData.userID){
+                return true;
+            }else{
+                return false;
+            }
+        })
+    }
+    async enrollCourse(enrollData: EnrollInput) {
+        console.log(enrollData.courseID);
+        console.log(enrollData.userID)
+        try {
+            const course = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $push: { enrolledUsers: enrollData.userID }, $inc: { enrolled: 1 }  }, (err, result) => {
+                if (err) console.log(err);
+            });
+            return course;
+        } catch (error) {
+            return error;
+        }
+
+    }
+    async unenrollCourse(enrollData: EnrollInput) {
+        try {
+            const course = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $pull: { enrolledUsers: enrollData.userID }, $inc: { enrolled: -1 } });
+            return course;
         } catch (error) {
             return error;
         }
