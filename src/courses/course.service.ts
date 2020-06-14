@@ -42,6 +42,7 @@ export class CourseService {
             const tempEnrollUsers = result.enrolledUsers;
             const hasUserId = tempEnrollUsers.find(userid => userid === enrollData.userID);
             if(hasUserId === enrollData.userID){
+                console.log(hasUserId)
                 return true;
             }else{
                 return false;
@@ -49,12 +50,8 @@ export class CourseService {
         })
     }
     async enrollCourse(enrollData: EnrollInput) {
-        console.log(enrollData.courseID);
-        console.log(enrollData.userID)
         try {
-            const course = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $push: { enrolledUsers: enrollData.userID }, $inc: { enrolled: 1 }  }, (err, result) => {
-                if (err) console.log(err);
-            });
+            const course = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $push: { enrolledUsers: enrollData.userID }, $inc: { enrolled: 1 } });
             return course;
         } catch (error) {
             return error;

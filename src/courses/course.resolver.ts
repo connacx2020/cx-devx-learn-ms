@@ -41,9 +41,16 @@ export class CourseResolver {
             return false;
         }
     }
-    @Mutation( returns => Boolean)
+    @Query( returns => Boolean)
     async checkUserIsEnrolled(@Args('enrollData') newEnrollData: EnrollInput){
         try{
+            const isEnroll = await this.courseService.checkUserIsEnrolled(newEnrollData)
+            // if(isEnroll){
+            //     return true;
+            // }else{
+            //     return false;
+            // }
+            console.log(isEnroll);
             return true;
         }catch(error){
             return false;
@@ -64,8 +71,13 @@ export class CourseResolver {
     } 
     @Mutation( returns => Boolean)
     async unenrollCourse(@Args('enrollData') newEnrollData: EnrollInput){
+        const isEnroll = await this.courseService.unenrollCourse(newEnrollData);
         try{
-            return true;
+            if(isEnroll){
+                return true;
+            }else{
+                return false;
+            }
         }catch(error){
             return false;
         }
