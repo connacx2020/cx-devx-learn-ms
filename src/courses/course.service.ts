@@ -37,17 +37,9 @@ export class CourseService {
         }
     }
     async checkUserIsEnrolled(enrollData: EnrollInput) {
-        const course = await this.courseModel.findOne({ id: enrollData.courseID }, (err, result) => {
-            if(err) console.log(err);
-            const tempEnrollUsers = result.enrolledUsers;
-            const hasUserId = tempEnrollUsers.find(userid => userid === enrollData.userID);
-            if(hasUserId === enrollData.userID){
-                console.log(hasUserId)
-                return true;
-            }else{
-                return false;
-            }
-        })
+        const course = await this.courseModel.findOne({ id: enrollData.courseID });
+        const isEnroll = course.enrolledUsers.includes(enrollData.userID)
+        return isEnroll;
     }
     async enrollCourse(enrollData: EnrollInput) {
         try {

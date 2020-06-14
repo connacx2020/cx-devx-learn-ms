@@ -45,13 +45,7 @@ export class CourseResolver {
     async checkUserIsEnrolled(@Args('enrollData') newEnrollData: EnrollInput){
         try{
             const isEnroll = await this.courseService.checkUserIsEnrolled(newEnrollData)
-            // if(isEnroll){
-            //     return true;
-            // }else{
-            //     return false;
-            // }
-            console.log(isEnroll);
-            return true;
+            return isEnroll;
         }catch(error){
             return false;
         }
