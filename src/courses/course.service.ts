@@ -43,8 +43,13 @@ export class CourseService {
     }
     async enrollCourse(enrollData: EnrollInput) {
         try {
-            const course = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $push: { enrolledUsers: enrollData.userID }, $inc: { enrolled: 1 } });
-            return course;
+            const course = await this.courseModel.findOne({ id: enrollData.courseID });
+            const isEnroll = course.enrolledUsers.includes(enrollData.userID)
+            if(!isEnroll){
+                const EnrollCourse = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $push: { enrolledUsers: enrollData.userID }, $inc: { enrolled: 1 } });
+                return EnrollCourse;
+            }
+            return false;
         } catch (error) {
             return error;
         }
@@ -52,8 +57,14 @@ export class CourseService {
     }
     async unenrollCourse(enrollData: EnrollInput) {
         try {
-            const course = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $pull: { enrolledUsers: enrollData.userID }, $inc: { enrolled: -1 } });
-            return course;
+            const course = await this.courseModel.findOne({ id: enrollData.courseID });
+            const isEnroll = course.enrolledUsers.includes(enrollData.userID)
+            if(isEnroll){
+                const EnrollCourse = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $pull: { enrolledUsers: enrollData.userID }, $inc: { enrolled: -1 } });
+                return EnrollCourse;
+            }
+            return false;
+           
         } catch (error) {
             return error;
         }

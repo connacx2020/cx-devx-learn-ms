@@ -56,9 +56,9 @@ export class CourseResolver {
             const isEnroll = await this.courseService.enrollCourse(newEnrollData);
             if(isEnroll){
                 return true;
-            }else{
-                return false;
             }
+            return false;
+            
         }catch(error){
             return false;
         }
@@ -69,9 +69,9 @@ export class CourseResolver {
         try{
             if(isEnroll){
                 return true;
-            }else{
-                return false;
             }
+            return false;
+            
         }catch(error){
             return false;
         }
