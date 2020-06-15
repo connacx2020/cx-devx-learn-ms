@@ -36,15 +36,16 @@ export class CourseService {
             return error;
         }
     }
+
     async checkUserIsEnrolled(enrollData: EnrollInput) {
         const course = await this.courseModel.findOne({ id: enrollData.courseID });
         const isEnroll = course.enrolledUsers.includes(enrollData.userID)
         return isEnroll;
     }
+
     async enrollCourse(enrollData: EnrollInput) {
         try {
-            const course = await this.courseModel.findOne({ id: enrollData.courseID });
-            const isEnroll = course.enrolledUsers.includes(enrollData.userID)
+            const isEnroll = await this.checkUserIsEnrolled(enrollData)
             if(!isEnroll){
                 const EnrollCourse = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $push: { enrolledUsers: enrollData.userID }, $inc: { enrolled: 1 } });
                 return EnrollCourse;
@@ -55,16 +56,15 @@ export class CourseService {
         }
 
     }
+    
     async unenrollCourse(enrollData: EnrollInput) {
         try {
-            const course = await this.courseModel.findOne({ id: enrollData.courseID });
-            const isEnroll = course.enrolledUsers.includes(enrollData.userID)
+            const isEnroll = await this.checkUserIsEnrolled(enrollData)
             if(isEnroll){
                 const EnrollCourse = await this.courseModel.findOneAndUpdate({ id: enrollData.courseID }, { $pull: { enrolledUsers: enrollData.userID }, $inc: { enrolled: -1 } });
                 return EnrollCourse;
             }
             return false;
-           
         } catch (error) {
             return error;
         }

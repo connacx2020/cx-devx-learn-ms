@@ -41,6 +41,7 @@ export class CourseResolver {
             return false;
         }
     }
+
     @Query( returns => Boolean)
     async checkUserIsEnrolled(@Args('enrollData') newEnrollData: EnrollInput){
         try{
@@ -50,6 +51,7 @@ export class CourseResolver {
             return false;
         }
     } 
+
     @Mutation( returns => Boolean)
     async enrollCourse(@Args('enrollData') newEnrollData: EnrollInput){
         try{
@@ -63,6 +65,7 @@ export class CourseResolver {
             return false;
         }
     } 
+    
     @Mutation( returns => Boolean)
     async unenrollCourse(@Args('enrollData') newEnrollData: EnrollInput){
         const isEnroll = await this.courseService.unenrollCourse(newEnrollData);
