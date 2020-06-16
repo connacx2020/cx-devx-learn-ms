@@ -6,7 +6,7 @@ export const CourseSchema = new mongoose.Schema({
     title: String,
     rating: Number,
     photoUrl: String,
-    seriesId: String,
+    seriesID: String,
     enrolled: Number,
     description: String,
     duration: String,
