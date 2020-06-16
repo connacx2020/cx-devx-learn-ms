@@ -6,7 +6,7 @@ export class EnrollInput{
     courseID:String;
     @Field(type => ID )
     userID:String;
-    
+
 }
 
 @InputType()
@@ -17,7 +17,7 @@ export class CourseInput {
     title: string;
     @Field(type => String)
     photoUrl: string;
-    @Field(type => String)
+    @Field(type => ID)
     seriesId: string;
     @Field(type => String)
     description: string;
@@ -27,6 +27,8 @@ export class CourseInput {
     prerequisite: [string];
     @Field(type => String)
     duration: string;
+    @Field(type => ID)
+    topicID: string;
 }
 
 
@@ -43,7 +45,7 @@ export class CourseType {
     rating: number;
     @Field(type => String)
     photoUrl: string;
-    @Field(type => String)
+    @Field(type => ID)
     seriesId: string;
     @Field(type => Number)
     enrolled: number;
@@ -57,4 +59,6 @@ export class CourseType {
     duration: string;
     @Field(type =>[ID])
     enrolledUsers: [String];
+    @Field(type => ID)
+    topicID: string;
 }
