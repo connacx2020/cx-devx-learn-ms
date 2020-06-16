@@ -27,8 +27,8 @@ export class CourseInput {
     prerequisite: [string];
     @Field(type => String)
     duration: string;
-    @Field(type => ID)
-    topicID: string;
+    @Field(type => [ID])
+    topicID: [string];
 }
 
 
@@ -59,6 +59,6 @@ export class CourseType {
     duration: string;
     @Field(type =>[ID])
     enrolledUsers: [String];
-    @Field(type => ID)
-    topicID: string;
+    @Field(type => [ID])
+    topicID: [string];
 }

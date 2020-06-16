@@ -13,7 +13,7 @@ export interface Course extends Document {
     outcome: [string],
     prerequisite: [string],
     enrolledUsers: [String],
-    topicID: String
+    topicID: [String]
 };
 
 
