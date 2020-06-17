@@ -25,7 +25,7 @@ export class CourseResolver {
     }
 
     @Query(returns => [CourseType], {nullable: true} )
-    async getCoursesByAuthorId(@Args('authorId', { type: () => ID }) authorID: string) {
+    async getCoursesByAuthorId(@Args('authorID', { type: () => ID }) authorID: string) {
         return await this.courseService.findCoursesByInstructorId(authorID);
     }
 
@@ -50,7 +50,7 @@ export class CourseResolver {
         }catch(error){
             return false;
         }
-    } 
+    }
 
     @Mutation( returns => Boolean)
     async enrollCourse(@Args('enrollData') newEnrollData: EnrollInput){
@@ -60,12 +60,12 @@ export class CourseResolver {
                 return true;
             }
             return false;
-            
+
         }catch(error){
             return false;
         }
-    } 
-    
+    }
+
     @Mutation( returns => Boolean)
     async unenrollCourse(@Args('enrollData') newEnrollData: EnrollInput){
         const isEnroll = await this.courseService.unenrollCourse(newEnrollData);
@@ -74,9 +74,9 @@ export class CourseResolver {
                 return true;
             }
             return false;
-            
+
         }catch(error){
             return false;
         }
-    } 
+    }
 }

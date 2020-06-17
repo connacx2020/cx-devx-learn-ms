@@ -6,13 +6,14 @@ export interface Course extends Document {
     title: String,
     rating: number,
     photoUrl: String,
-    seriesId: String,
+    seriesID: String,
     enrolled: number,
     description: String,
     duration: String,
     outcome: [string],
     prerequisite: [string],
-    enrolledUsers: [String]
+    enrolledUsers: [String],
+    topicID: [String]
 };
 
 
