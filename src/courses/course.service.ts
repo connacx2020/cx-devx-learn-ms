@@ -15,11 +15,15 @@ export class CourseService {
     }
 
     async findCourseById(id: string) {
-        return await this.courseModel.findOne({ id: id }).exec();
+        return await this.courseModel.findOne({ id }).exec();
     }
 
     async findCoursesByInstructorId(id: string) {
         return await this.courseModel.find({ authorID: id }).exec();
+    }
+
+    async deleteCourse(id: string) {
+        return await this.courseModel.deleteOne({ id }).exec();
     }
 
     async findCourseByTitle(title: string) {
@@ -56,7 +60,7 @@ export class CourseService {
         }
 
     }
-    
+
     async unenrollCourse(enrollData: EnrollInput) {
         try {
             const isEnroll = await this.checkUserIsEnrolled(enrollData)

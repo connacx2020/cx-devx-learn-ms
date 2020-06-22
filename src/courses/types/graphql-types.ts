@@ -17,6 +17,8 @@ export class CourseInput {
     title: string;
     @Field(type => String)
     photoUrl: string;
+    @Field(type => Number)
+    price: number;
     @Field(type => ID)
     seriesID: string;
     @Field(type => String)
@@ -45,6 +47,8 @@ export class CourseType {
     rating: number;
     @Field(type => String)
     photoUrl: string;
+    @Field(type => Number)
+    price: number;
     @Field(type => ID)
     seriesID: string;
     @Field(type => Number)
