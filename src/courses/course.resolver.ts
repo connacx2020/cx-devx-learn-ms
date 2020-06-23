@@ -33,7 +33,7 @@ export class CourseResolver {
     async createNewCourse(@Args('courseData') newCourseData: CourseInput) {
         try {
             newCourseData['id'] = generateUUID();
-            newCourseData['rating'] = 0;
+            newCourseData['rating'] = parseFloat((Math.random()* (5-3)+3).toFixed(1));
             newCourseData['enrolled'] = 0;
             await this.courseService.addNewCourse(newCourseData);
             return true;
